@@ -1,0 +1,11 @@
+numpy>=2.2.3
+scipy>=1.15.2
+requests>=2.32.3
+scikit-learn>=1.6.1
+skl2onnx>=1.18.0
+onnxruntime>=1.21.0
+skops>=0.11.0
+dvc>=3.59.1
+pathlib>=1.0.1
+logging>=0.4.9.6
+omegaconf>=2.3.0
