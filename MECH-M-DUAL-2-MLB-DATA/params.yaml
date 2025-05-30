@@ -1,11 +1,16 @@
-Pipeline: [PCA, VotingClassifier]
+Pipeline:
+- PCA
+- VotingClassifier
 
 # ----- Container zuerst – Reihenfolge egal! -----------------------------
 VotingClassifier:
   type: sklearn.ensemble.VotingClassifier
   init_args:
     flatten_transform: false
-  estimators: [LinearDiscriminantAnalysis, RandomForestClassifier, SVC]
+  estimators:
+  - LinearDiscriminantAnalysis
+  - RandomForestClassifier
+  - SVC
 
 # ----- Basis-Modelle -----------------------------------------------------
 PCA:
@@ -21,7 +26,7 @@ LinearDiscriminantAnalysis:
 RandomForestClassifier:
   type: sklearn.ensemble.RandomForestClassifier
   init_args:
-    n_estimators: 500
+    n_estimators: 1000
     max_leaf_nodes: 2
     random_state: 6020
 
