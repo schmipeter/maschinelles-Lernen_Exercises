@@ -17,3 +17,4 @@ Requires-Dist: dvc>=3.59.1
 Requires-Dist: pathlib>=1.0.1
 Requires-Dist: logging>=0.4.9.6
 Requires-Dist: omegaconf>=2.3.0
+Requires-Dist: dvclive>=3.48.2
