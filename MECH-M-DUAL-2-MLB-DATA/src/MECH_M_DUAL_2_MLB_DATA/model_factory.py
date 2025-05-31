@@ -1,103 +1,77 @@
-"""
-model_factory.py
-================
-Erzeugt ein Modell oder eine Pipeline *ausschließlich* aus einer YAML-Datei.
-* Reihenfolge im YAML spielt KEINE Rolle.
-* Container-Klassen (VotingClassifier u. a.) holen fehlende Unter-Modelle
-  automatisch nach (“on-demand instantiation”).
-
-Beispiel–Verwendung
--------------------
-from MECH_M_DUAL_2_MLB_DATA import build_model
-model = build_model()                     # liest params.yaml im Projekt-Root
-"""
-
+# src/MECH_M_DUAL_2_MLB_DATA/model_factory.py
 from __future__ import annotations
-
-from importlib import import_module
 from pathlib import Path
-from typing import Any, Dict, List
+from importlib import import_module
+from typing import Any, Dict
 
-from omegaconf import OmegaConf
+from omegaconf import OmegaConf, DictConfig
 from sklearn.pipeline import Pipeline
 
-__all__ = ["build_model"]
+import logging
+log = logging.getLogger(__name__)
 
+# ---------------------------------------------------------------------------
 
-# ---------------------------------------------------------------------------#
-# Hilfsfunktionen                                                            #
-# ---------------------------------------------------------------------------#
-def _load_class(dotted_path: str):
-    """Lädt Klasse per 'paket.modul.Klassename'."""
-    module_name, cls_name = dotted_path.rsplit(".", 1)
-    module = import_module(module_name)
-    return getattr(module, cls_name)
+def _import_class(qualname: str):
+    """ 'sklearn.ensemble.RandomForestClassifier'  →  Klasse """
+    mod, cls = qualname.rsplit(".", 1)
+    return getattr(import_module(mod), cls)
 
+def _instantiate(name: str, cfg_section: DictConfig, registry: dict[str, Any]):
+    """
+    - importiert die Klasse
+    - baut optionale **kwargs  aus init_args
+    - baut ein optionales *positional* Argument „estimators“
+      (benötigt z. B. VotingClassifier)
+    """
+    cls = _import_class(cfg_section.type)
+    kwargs = OmegaConf.to_container(cfg_section.get("init_args", {}), resolve=True)
 
-def _is_container(section: "OmegaConf") -> bool:
-    """Container-Klassen besitzen meist eine 'estimators'-Liste."""
-    return "estimators" in section
+    pos_args: list[Any] = []
+    if "estimators" in cfg_section:                       # <-- NEU
+        missing = [e for e in cfg_section.estimators if e not in registry]
+        if missing:
+            raise KeyError(
+                f"Estimator(s) {missing!r} erst nach {name!r} definieren "
+                "oder Reihenfolge in params.yaml korrigieren."
+            )
+        est_list = [(e, registry[e]) for e in cfg_section.estimators]
+        pos_args.append(est_list)                         # erste Position
 
-
-def _instantiate(
-    name: str,
-    cfg: "OmegaConf",
-    registry: Dict[str, Any],
-    cfg_root: "OmegaConf",
-):
-    """Erzeugt Objekt laut *cfg* – erzeugt fehlende Unter-Modelle automatisch."""
-    if name in registry:  # bereits vorhanden
-        return registry[name]
-
-    cls = _load_class(cfg.type)
-    kwargs = OmegaConf.to_container(cfg.get("init_args", {}), resolve=True)
-
-    # Container?  → erst Unter-Modelle sicherstellen
-    if "estimators" in cfg:
-        for sub in cfg.estimators:
-            if sub not in registry:
-                _instantiate(sub, cfg_root[sub], registry, cfg_root)
-        kwargs["estimators"] = [(e, registry[e]) for e in cfg.estimators]
-
-    obj = cls(**kwargs)
+    obj = cls(*pos_args, **kwargs)                        # ✔ jetzt korrekt
     registry[name] = obj
-    return obj
+    log.debug("Instanziiert %-25s -> %s", name, obj)
+# ---------------------------------------------------------------------------
 
+def _pipeline_from_cfg(cfg: DictConfig) -> Pipeline:
+    """Erzeugt eine sklearn-Pipeline aus vollständigem OmegaConf."""
+    # 1) alle Modelle instanziieren und merken
+    registry: dict[str, Any] = {}
+    for name, section in cfg.Models.items():
+        _instantiate(name, section, registry)
 
-# ---------------------------------------------------------------------------#
-# Öffentliche Fabrikfunktion                                                 #
-# ---------------------------------------------------------------------------#
-def build_model(config_path: str | Path = "params.yaml"):
+    # 2) Schritte gemäß Pipeline-Reihenfolge zusammensetzen
+    steps = [(name, registry[name]) for name in cfg.Pipeline]
+    pipe = Pipeline(steps)
+    log.debug("Fertige Pipeline: %s", pipe)
+    return pipe
+
+# ---------------------------------------------------------------------------
+
+def build_model(config: str | Path | DictConfig | Dict[str, Any] | None = None) -> Pipeline:
     """
-    Baut Modell bzw. Pipeline gem. YAML-Konfiguration.
-
-    * config_path: Pfad zur YAML (relativ/absolut). Default: params.yaml im
-      aktuellen Verzeichnis.
-    * Gibt `sklearn.pipeline.Pipeline` zurück, falls ein 'Pipeline'-Schlüssel
-      existiert, sonst das unter 'model' referenzierte oder erste Objekt.
+    * **ohne Argument**   →  params.yaml im Projekt
+    * **Pfad/Dateiname** →  YAML laden
+    * **OmegaConf-Objekt / dict** →  direkt verwenden
     """
-    cfg = OmegaConf.load(str(config_path))
-    registry: Dict[str, Any] = {}
+    if config is None:
+        config = "params.yaml"
 
-    # Phase 1 – alle Nicht-Container instanziieren
-    for name, section in cfg.items():
-        if name == "Pipeline" or _is_container(section):
-            continue
-        _instantiate(name, section, registry, cfg)
+    # Fall 1: Pfad/Dateiname
+    if isinstance(config, (str, Path)):
+        cfg = OmegaConf.load(str(config))             # type: ignore[arg-type]
+    # Fall 2: schon OmegaConf / dict
+    else:
+        cfg = OmegaConf.create(config)
 
-    # Phase 2 – Container (holt Untermodelle on-demand)
-    for name, section in cfg.items():
-        if name == "Pipeline" or not _is_container(section):
-            continue
-        _instantiate(name, section, registry, cfg)
-
-    # Pipeline bauen?
-    if "Pipeline" in cfg:
-        steps = [(n, registry[n]) for n in cfg.Pipeline]
-        return Pipeline(steps)
-
-    # Einzelmodell zurückgeben
-    if "model" in cfg:
-        return registry[str(cfg.model)]
-    # Fallback: erster Key (ohne Pipeline)
-    return registry[next(iter(k for k in cfg if k != "Pipeline"))]
+    return _pipeline_from_cfg(cfg)
