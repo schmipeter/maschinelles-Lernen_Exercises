@@ -1,2 +1,6 @@
 [plots]
     auto_open = true
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = webdavs://sakai.mci4me.at/dav/Course-ID-SLVA-46549/students-remote/peterschmidt/
