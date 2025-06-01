@@ -19,3 +19,4 @@ src/MECH_M_DUAL_2_MLB_DATA/etl/__init__.py
 src/MECH_M_DUAL_2_MLB_DATA/etl/extract.py
 src/MECH_M_DUAL_2_MLB_DATA/etl/load.py
 src/MECH_M_DUAL_2_MLB_DATA/etl/transform.py
+src/MECH_M_DUAL_2_MLB_DATA/etl/utils.py

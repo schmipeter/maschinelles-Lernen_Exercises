@@ -8,10 +8,10 @@ stages:
     outs:
     - dvclive
 metrics:
-- dvclive/metrics.json
 - dvclive_advanced/metrics.json
+- dvclive/metrics.json
 plots:
-- dvclive/plots/metrics:
-    x: step
 - dvclive_advanced/plots/metrics:
+    x: step
+- dvclive/plots/metrics:
     x: step
