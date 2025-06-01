@@ -9,6 +9,9 @@ stages:
     - dvclive
 metrics:
 - dvclive/metrics.json
+- dvclive_advanced/metrics.json
 plots:
 - dvclive/plots/metrics:
+    x: step
+- dvclive_advanced/plots/metrics:
     x: step
