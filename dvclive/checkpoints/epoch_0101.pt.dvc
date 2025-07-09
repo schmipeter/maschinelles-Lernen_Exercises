@@ -1,0 +1,5 @@
+outs:
+- md5: 25d5b5c9206693f40622e439e4539a4f
+  size: 10747
+  hash: md5
+  path: epoch_0101.pt
