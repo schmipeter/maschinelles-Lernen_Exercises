@@ -5,16 +5,16 @@ from sklearn.datasets import load_iris, make_moons
 from sklearn.decomposition import PCA
 from sklearn.cluster import AgglomerativeClustering
 
-# ------------------------------
+
 # 1. Agglomerative Clustering on the Iris Data Set
-# ------------------------------
+
 
 # Load the Iris dataset
 iris = load_iris()
 X_iris = iris.data  # shape (150, 4)
 y_iris = iris.target
 
-## A) 2D version (using the first two features)
+# A) 2D version (using the first two features)
 X_iris_2d = X_iris[:, :2]  # sepal length and sepal width
 
 # Use Ward linkage (which minimizes variance) for agglomerative clustering
@@ -29,7 +29,7 @@ plt.title("Iris (2D) - Agglomerative Clustering (Ward)")
 plt.xlabel("Sepal length")
 plt.ylabel("Sepal width")
 
-## B) 4D version (using all four features)
+# B) 4D version (using all four features)
 agg_iris_4d = AgglomerativeClustering(n_clusters=3, linkage="ward")
 labels_iris_4d = agg_iris_4d.fit_predict(X_iris)
 
@@ -50,9 +50,8 @@ plt.xlabel("PC 1")
 plt.ylabel("PC 2")
 
 
-# ------------------------------
 # 2. Agglomerative Clustering on the Moons Data Set
-# ------------------------------
+
 
 # Generate the two-moons dataset
 X_moons, y_moons = make_moons(n_samples=500, noise=0.05, random_state=42)
