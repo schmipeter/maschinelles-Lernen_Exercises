@@ -11,7 +11,7 @@ from sklearn.cluster import AgglomerativeClustering
 
 # Load the Iris dataset
 iris = load_iris()
-X_iris = iris.data      # shape (150, 4)
+X_iris = iris.data  # shape (150, 4)
 y_iris = iris.target
 
 ## A) 2D version (using the first two features)
@@ -22,7 +22,9 @@ agg_iris_2d = AgglomerativeClustering(n_clusters=3, linkage="ward")
 labels_iris_2d = agg_iris_2d.fit_predict(X_iris_2d)
 
 plt.figure(figsize=(5, 4))
-plt.scatter(X_iris_2d[:, 0], X_iris_2d[:, 1], c=labels_iris_2d, cmap="viridis", edgecolor="k")
+plt.scatter(
+    X_iris_2d[:, 0], X_iris_2d[:, 1], c=labels_iris_2d, cmap="viridis", edgecolor="k"
+)
 plt.title("Iris (2D) - Agglomerative Clustering (Ward)")
 plt.xlabel("Sepal length")
 plt.ylabel("Sepal width")
@@ -36,7 +38,13 @@ pca_iris = PCA(n_components=2)
 X_iris_4d_pca = pca_iris.fit_transform(X_iris)
 
 plt.figure(figsize=(5, 4))
-plt.scatter(X_iris_4d_pca[:, 0], X_iris_4d_pca[:, 1], c=labels_iris_4d, cmap="viridis", edgecolor="k")
+plt.scatter(
+    X_iris_4d_pca[:, 0],
+    X_iris_4d_pca[:, 1],
+    c=labels_iris_4d,
+    cmap="viridis",
+    edgecolor="k",
+)
 plt.title("Iris (4D) - Agglomerative Clustering (Ward) projected to 2D")
 plt.xlabel("PC 1")
 plt.ylabel("PC 2")
@@ -60,13 +68,30 @@ for i, linkage in enumerate(linkage_options):
     # Create and fit the model with the current linkage option
     agg_moons = AgglomerativeClustering(n_clusters=2, linkage=linkage)
     labels_moons = agg_moons.fit_predict(X_moons)
-    
+
     # Plot the clustering result
     ax = axes[i]
-    ax.scatter(X_moons[:, 0], X_moons[:, 1], c=labels_moons, cmap="viridis", edgecolor="k")
+    ax.scatter(
+        X_moons[:, 0], X_moons[:, 1], c=labels_moons, cmap="viridis", edgecolor="k"
+    )
     ax.set_title(f"Moons Clustering ({linkage} linkage)")
     ax.set_xlabel("$x_1$")
     ax.set_ylabel("$x_2$")
 
 plt.tight_layout()
 plt.show()
+
+
+# Fazit
+# Agglomerative Clustering
+#   Iris:
+#   – Ward-Linkage in 2 D trennt Klassen besser als K-Means; dennoch leichte
+#     Überlappung (v. a. Setosa / Versicolor).
+#   – Mit allen 4 Features (PCA-Projektion) entstehen drei deutlichere Cluster.
+#
+# • Two-Moons:
+#   – Ward, Complete, Average erkennen korrekt beide Halbmonde.
+#   – Single-Linkage leidet unter „Chaining“ und fragmentiert einen Mond.
+#
+#    Hierarchische Methoden handhaben nicht-konvexe Strukturen (Moons) besser
+#    als K-Means. Linkage-Wahl beeinflusst Ergebnis deutlich (Single meiden).
