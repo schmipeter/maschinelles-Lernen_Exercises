@@ -1,6 +1,3 @@
-# --------------------------------------------------------------------
-# 1) Vor *allen* scikit-learn-Imports:  WMIC-Aufruf deaktivieren
-# --------------------------------------------------------------------
 import os, warnings
 
 os.environ["LOKY_MAX_CPU_COUNT"] = "8"  # logische Kerne – anpassen
@@ -12,14 +9,14 @@ warnings.filterwarnings(
     module="joblib.externals.loky.backend.context",
 )
 
-# ------------- Monkey-Patch, damit kein WMIC mehr gestartet wird -----
+# Monkey-Patch, damit kein WMIC mehr gestartet wird -----
 import importlib
 
 loky_ctx = importlib.import_module("joblib.externals.loky.backend.context")
 loky_ctx._count_physical_cores_win32 = lambda: int(os.environ["LOKY_MAX_CPU_COUNT"])
 # --------------------------------------------------------------------
 
-# ----- ab hier deine bisherigen Imports / Kommentare / Code ----------
+# ab hier deine bisherigen Imports / Kommentare / Code ----------
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris, make_moons
@@ -135,3 +132,16 @@ plt.xlabel("PC 1")
 plt.ylabel("PC 2")
 
 plt.show()
+
+
+# Fazit Exercise 1.1
+# Iris:
+#  Mit 2 Merkmalen zeigen sich drei Cluster, allerdings überlappen sie teilweise.
+#  Mit allen 4 Merkmalen (PCA-Projekt → 2 D) sind die Cluster klarer getrennt.
+#
+# Two-Moons:
+#  K-Means kann nicht-konvexe Strukturen nicht erfassen – Halbmonde werden falsch gruppiert.
+#
+# Cats vs. Dogs:
+#  Roh-Pixel → PCA(20) → K-Means(2) liefert ~47 % Genauigkeit, also Zufall.
+#  Für Bild­daten braucht man aussagekräftigere Features (z. B. HOG oder CNN-Embeddings).
