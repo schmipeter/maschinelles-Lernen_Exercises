@@ -1,0 +1,8 @@
+PCA/n_components: 30
+LinearDiscriminantAnalysis/solver: svd
+RandomForestClassifier/n_estimators: 500
+RandomForestClassifier/max_leaf_nodes: 2
+RandomForestClassifier/random_state: 6020
+SVC/kernel: linear
+SVC/probability: true
+SVC/random_state: 6020

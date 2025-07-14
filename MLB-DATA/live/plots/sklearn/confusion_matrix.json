@@ -1,0 +1,42 @@
+[
+    {
+        "actual": "1",
+        "predicted": "1"
+    },
+    {
+        "actual": "1",
+        "predicted": "1"
+    },
+    {
+        "actual": "1",
+        "predicted": "1"
+    },
+    {
+        "actual": "1",
+        "predicted": "1"
+    },
+    {
+        "actual": "1",
+        "predicted": "1"
+    },
+    {
+        "actual": "-1",
+        "predicted": "-1"
+    },
+    {
+        "actual": "-1",
+        "predicted": "-1"
+    },
+    {
+        "actual": "-1",
+        "predicted": "1"
+    },
+    {
+        "actual": "-1",
+        "predicted": "1"
+    },
+    {
+        "actual": "-1",
+        "predicted": "1"
+    }
+]
