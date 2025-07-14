@@ -1,0 +1,5 @@
+outs:
+- md5: f7e22b3e9272d5ed3395b882bbfba2b5
+  size: 655552
+  hash: md5
+  path: catData_w.mat

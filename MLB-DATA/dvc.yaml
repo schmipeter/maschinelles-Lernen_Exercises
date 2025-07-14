@@ -1,0 +1,27 @@
+stages:
+  train:
+    cmd: pdm run python src/MECH-M-DUAL-2-MLB-DATA/train.py
+    deps:
+    - data
+    - src/MECH-M-DUAL-2-MLB-DATA/
+    - params.yaml
+    outs:
+    - dvclive
+params:
+- live/params.yaml
+metrics:
+- live/metrics.json
+plots:
+- live/plots/metrics:
+    x: step
+- live/plots/sklearn/confusion_matrix.json:
+    template: confusion
+    x: actual
+    y: predicted
+    title: Confusion Matrix
+    x_label: True Label
+    y_label: Predicted Label
+artifacts:
+  model:
+    path: live/artifacts/model.skops
+    type: model

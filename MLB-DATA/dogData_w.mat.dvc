@@ -1,0 +1,5 @@
+outs:
+- md5: f2e83abda1ade16dc50344b8f9fdf0f4
+  size: 655552
+  hash: md5
+  path: dogData_w.mat
