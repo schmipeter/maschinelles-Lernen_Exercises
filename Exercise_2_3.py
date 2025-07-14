@@ -6,9 +6,8 @@ from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 from sklearn.svm import LinearSVC
 from sklearn.datasets import make_moons
 
-# -------------------------------
+
 # 1) Nonlinear SVM on Circular Data
-# -------------------------------
 np.random.seed(6020)
 
 # Generate a grid of points from -1 to 1 in each dimension
@@ -30,7 +29,7 @@ y_circle = labels_circle.ravel()
 pipe_circle = make_pipeline(
     PolynomialFeatures(degree=2, include_bias=True),
     StandardScaler(),
-    LinearSVC(C=1000, random_state=6020, max_iter=10000)
+    LinearSVC(C=1000, random_state=6020, max_iter=10000),
 )
 
 # Fit the model
@@ -49,25 +48,33 @@ Z_circle = Z_circle.reshape(XX_vis.shape)
 # Plot the decision boundary
 plt.figure(figsize=(6, 5))
 plt.contourf(XX_vis, YY_vis, Z_circle, alpha=0.3, cmap="coolwarm")
-plt.scatter(X_circle[y_circle == 0, 0], X_circle[y_circle == 0, 1],
-            color='blue', label='class 0')
-plt.scatter(X_circle[y_circle == 1, 0], X_circle[y_circle == 1, 1],
-            color='orange', label='class 1')
+plt.scatter(
+    X_circle[y_circle == 0, 0],
+    X_circle[y_circle == 0, 1],
+    color="blue",
+    label="class 0",
+)
+plt.scatter(
+    X_circle[y_circle == 1, 0],
+    X_circle[y_circle == 1, 1],
+    color="orange",
+    label="class 1",
+)
 plt.title("Nonlinear SVM on Circular Data")
 plt.xlabel("x1")
 plt.ylabel("x2")
-plt.axis('equal')
+plt.axis("equal")
 plt.legend()
 
-# -------------------------------
+
 # 2) Nonlinear SVM on Two-Moons Data
-# -------------------------------
+
 X_moons, y_moons = make_moons(n_samples=200, noise=0.1, random_state=42)
 
 pipe_moons = make_pipeline(
     PolynomialFeatures(degree=3, include_bias=True),
     StandardScaler(),
-    LinearSVC(C=1000, random_state=6020, max_iter=10000)
+    LinearSVC(C=1000, random_state=6020, max_iter=10000),
 )
 
 pipe_moons.fit(X_moons, y_moons)
@@ -87,14 +94,16 @@ Z_moons = Z_moons.reshape(XX_moons.shape)
 # Plot the decision boundary
 plt.figure(figsize=(6, 5))
 plt.contourf(XX_moons, YY_moons, Z_moons, alpha=0.3, cmap="coolwarm")
-plt.scatter(X_moons[y_moons == 0, 0], X_moons[y_moons == 0, 1],
-            color='blue', label='class 0')
-plt.scatter(X_moons[y_moons == 1, 0], X_moons[y_moons == 1, 1],
-            color='orange', label='class 1')
+plt.scatter(
+    X_moons[y_moons == 0, 0], X_moons[y_moons == 0, 1], color="blue", label="class 0"
+)
+plt.scatter(
+    X_moons[y_moons == 1, 0], X_moons[y_moons == 1, 1], color="orange", label="class 1"
+)
 plt.title("Nonlinear SVM on Two-Moons Data")
 plt.xlabel("x1")
 plt.ylabel("x2")
-plt.axis('equal')
+plt.axis("equal")
 plt.legend()
 
 plt.tight_layout()

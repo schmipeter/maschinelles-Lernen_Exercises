@@ -1,0 +1,246 @@
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step
+artifacts:
+  ckpt_0000:
+    path: dvclive/checkpoints/epoch_0000.pt
+  ckpt_0001:
+    path: dvclive/checkpoints/epoch_0001.pt
+  ckpt_0002:
+    path: dvclive/checkpoints/epoch_0002.pt
+  ckpt_0003:
+    path: dvclive/checkpoints/epoch_0003.pt
+  ckpt_0004:
+    path: dvclive/checkpoints/epoch_0004.pt
+  ckpt_0005:
+    path: dvclive/checkpoints/epoch_0005.pt
+  ckpt_0006:
+    path: dvclive/checkpoints/epoch_0006.pt
+  ckpt_0007:
+    path: dvclive/checkpoints/epoch_0007.pt
+  ckpt_0008:
+    path: dvclive/checkpoints/epoch_0008.pt
+  ckpt_0009:
+    path: dvclive/checkpoints/epoch_0009.pt
+  ckpt_0010:
+    path: dvclive/checkpoints/epoch_0010.pt
+  ckpt_0011:
+    path: dvclive/checkpoints/epoch_0011.pt
+  ckpt_0012:
+    path: dvclive/checkpoints/epoch_0012.pt
+  ckpt_0013:
+    path: dvclive/checkpoints/epoch_0013.pt
+  ckpt_0014:
+    path: dvclive/checkpoints/epoch_0014.pt
+  ckpt_0015:
+    path: dvclive/checkpoints/epoch_0015.pt
+  ckpt_0016:
+    path: dvclive/checkpoints/epoch_0016.pt
+  ckpt_0017:
+    path: dvclive/checkpoints/epoch_0017.pt
+  ckpt_0018:
+    path: dvclive/checkpoints/epoch_0018.pt
+  ckpt_0019:
+    path: dvclive/checkpoints/epoch_0019.pt
+  ckpt_0020:
+    path: dvclive/checkpoints/epoch_0020.pt
+  ckpt_0021:
+    path: dvclive/checkpoints/epoch_0021.pt
+  ckpt_0022:
+    path: dvclive/checkpoints/epoch_0022.pt
+  ckpt_0023:
+    path: dvclive/checkpoints/epoch_0023.pt
+  ckpt_0024:
+    path: dvclive/checkpoints/epoch_0024.pt
+  ckpt_0025:
+    path: dvclive/checkpoints/epoch_0025.pt
+  ckpt_0026:
+    path: dvclive/checkpoints/epoch_0026.pt
+  ckpt_0027:
+    path: dvclive/checkpoints/epoch_0027.pt
+  ckpt_0028:
+    path: dvclive/checkpoints/epoch_0028.pt
+  ckpt_0029:
+    path: dvclive/checkpoints/epoch_0029.pt
+  ckpt_0030:
+    path: dvclive/checkpoints/epoch_0030.pt
+  ckpt_0031:
+    path: dvclive/checkpoints/epoch_0031.pt
+  ckpt_0032:
+    path: dvclive/checkpoints/epoch_0032.pt
+  ckpt_0033:
+    path: dvclive/checkpoints/epoch_0033.pt
+  ckpt_0034:
+    path: dvclive/checkpoints/epoch_0034.pt
+  ckpt_0035:
+    path: dvclive/checkpoints/epoch_0035.pt
+  ckpt_0036:
+    path: dvclive/checkpoints/epoch_0036.pt
+  ckpt_0037:
+    path: dvclive/checkpoints/epoch_0037.pt
+  ckpt_0038:
+    path: dvclive/checkpoints/epoch_0038.pt
+  ckpt_0039:
+    path: dvclive/checkpoints/epoch_0039.pt
+  ckpt_0040:
+    path: dvclive/checkpoints/epoch_0040.pt
+  ckpt_0041:
+    path: dvclive/checkpoints/epoch_0041.pt
+  ckpt_0042:
+    path: dvclive/checkpoints/epoch_0042.pt
+  ckpt_0043:
+    path: dvclive/checkpoints/epoch_0043.pt
+  ckpt_0044:
+    path: dvclive/checkpoints/epoch_0044.pt
+  ckpt_0045:
+    path: dvclive/checkpoints/epoch_0045.pt
+  ckpt_0046:
+    path: dvclive/checkpoints/epoch_0046.pt
+  ckpt_0047:
+    path: dvclive/checkpoints/epoch_0047.pt
+  ckpt_0048:
+    path: dvclive/checkpoints/epoch_0048.pt
+  ckpt_0049:
+    path: dvclive/checkpoints/epoch_0049.pt
+  ckpt_0050:
+    path: dvclive/checkpoints/epoch_0050.pt
+  ckpt_0051:
+    path: dvclive/checkpoints/epoch_0051.pt
+  ckpt_0052:
+    path: dvclive/checkpoints/epoch_0052.pt
+  ckpt_0053:
+    path: dvclive/checkpoints/epoch_0053.pt
+  ckpt_0054:
+    path: dvclive/checkpoints/epoch_0054.pt
+  ckpt_0055:
+    path: dvclive/checkpoints/epoch_0055.pt
+  ckpt_0056:
+    path: dvclive/checkpoints/epoch_0056.pt
+  ckpt_0057:
+    path: dvclive/checkpoints/epoch_0057.pt
+  ckpt_0058:
+    path: dvclive/checkpoints/epoch_0058.pt
+  ckpt_0059:
+    path: dvclive/checkpoints/epoch_0059.pt
+  ckpt_0060:
+    path: dvclive/checkpoints/epoch_0060.pt
+  ckpt_0061:
+    path: dvclive/checkpoints/epoch_0061.pt
+  ckpt_0062:
+    path: dvclive/checkpoints/epoch_0062.pt
+  ckpt_0063:
+    path: dvclive/checkpoints/epoch_0063.pt
+  ckpt_0064:
+    path: dvclive/checkpoints/epoch_0064.pt
+  ckpt_0065:
+    path: dvclive/checkpoints/epoch_0065.pt
+  ckpt_0066:
+    path: dvclive/checkpoints/epoch_0066.pt
+  ckpt_0067:
+    path: dvclive/checkpoints/epoch_0067.pt
+  ckpt_0068:
+    path: dvclive/checkpoints/epoch_0068.pt
+  ckpt_0069:
+    path: dvclive/checkpoints/epoch_0069.pt
+  ckpt_0070:
+    path: dvclive/checkpoints/epoch_0070.pt
+  ckpt_0071:
+    path: dvclive/checkpoints/epoch_0071.pt
+  ckpt_0072:
+    path: dvclive/checkpoints/epoch_0072.pt
+  ckpt_0073:
+    path: dvclive/checkpoints/epoch_0073.pt
+  ckpt_0074:
+    path: dvclive/checkpoints/epoch_0074.pt
+  ckpt_0075:
+    path: dvclive/checkpoints/epoch_0075.pt
+  ckpt_0076:
+    path: dvclive/checkpoints/epoch_0076.pt
+  ckpt_0077:
+    path: dvclive/checkpoints/epoch_0077.pt
+  ckpt_0078:
+    path: dvclive/checkpoints/epoch_0078.pt
+  ckpt_0079:
+    path: dvclive/checkpoints/epoch_0079.pt
+  ckpt_0080:
+    path: dvclive/checkpoints/epoch_0080.pt
+  ckpt_0081:
+    path: dvclive/checkpoints/epoch_0081.pt
+  ckpt_0082:
+    path: dvclive/checkpoints/epoch_0082.pt
+  ckpt_0083:
+    path: dvclive/checkpoints/epoch_0083.pt
+  ckpt_0084:
+    path: dvclive/checkpoints/epoch_0084.pt
+  ckpt_0085:
+    path: dvclive/checkpoints/epoch_0085.pt
+  ckpt_0086:
+    path: dvclive/checkpoints/epoch_0086.pt
+  ckpt_0087:
+    path: dvclive/checkpoints/epoch_0087.pt
+  ckpt_0088:
+    path: dvclive/checkpoints/epoch_0088.pt
+  ckpt_0089:
+    path: dvclive/checkpoints/epoch_0089.pt
+  ckpt_0090:
+    path: dvclive/checkpoints/epoch_0090.pt
+  ckpt_0091:
+    path: dvclive/checkpoints/epoch_0091.pt
+  ckpt_0092:
+    path: dvclive/checkpoints/epoch_0092.pt
+  ckpt_0093:
+    path: dvclive/checkpoints/epoch_0093.pt
+  ckpt_0094:
+    path: dvclive/checkpoints/epoch_0094.pt
+  ckpt_0095:
+    path: dvclive/checkpoints/epoch_0095.pt
+  ckpt_0096:
+    path: dvclive/checkpoints/epoch_0096.pt
+  ckpt_0097:
+    path: dvclive/checkpoints/epoch_0097.pt
+  ckpt_0098:
+    path: dvclive/checkpoints/epoch_0098.pt
+  ckpt_0099:
+    path: dvclive/checkpoints/epoch_0099.pt
+  ckpt_0100:
+    path: dvclive/checkpoints/epoch_0100.pt
+  ckpt_0101:
+    path: dvclive/checkpoints/epoch_0101.pt
+  ckpt_0102:
+    path: dvclive/checkpoints/epoch_0102.pt
+  ckpt_0103:
+    path: dvclive/checkpoints/epoch_0103.pt
+  ckpt_0104:
+    path: dvclive/checkpoints/epoch_0104.pt
+  ckpt_0105:
+    path: dvclive/checkpoints/epoch_0105.pt
+  ckpt_0106:
+    path: dvclive/checkpoints/epoch_0106.pt
+  ckpt_0107:
+    path: dvclive/checkpoints/epoch_0107.pt
+  ckpt_0108:
+    path: dvclive/checkpoints/epoch_0108.pt
+  ckpt_0109:
+    path: dvclive/checkpoints/epoch_0109.pt
+  ckpt_0110:
+    path: dvclive/checkpoints/epoch_0110.pt
+  ckpt_0111:
+    path: dvclive/checkpoints/epoch_0111.pt
+  ckpt_0112:
+    path: dvclive/checkpoints/epoch_0112.pt
+  ckpt_0113:
+    path: dvclive/checkpoints/epoch_0113.pt
+  ckpt_0114:
+    path: dvclive/checkpoints/epoch_0114.pt
+  ckpt_0115:
+    path: dvclive/checkpoints/epoch_0115.pt
+  ckpt_0116:
+    path: dvclive/checkpoints/epoch_0116.pt
+  ckpt_0117:
+    path: dvclive/checkpoints/epoch_0117.pt
+  ckpt_0118:
+    path: dvclive/checkpoints/epoch_0118.pt
+  ckpt_0119:
+    path: dvclive/checkpoints/epoch_0119.pt

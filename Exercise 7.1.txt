@@ -1,0 +1,30 @@
+Aufgabe 7.1 
+
+
+1) Größen der Gewichtsmatrizen  
+   A1: 4 × 7   (Input  → x¹)  
+   A2: 3 × 4   (x¹     → x²)  
+   A3: 4 × 3   (x²     → x³)  
+   A4: 2 × 4   (x³     → x⁴)  
+   → alles dicht besetzte Matrizen, keine Nullen vorgesehen.
+
+2) Bias-Vektoren  
+   b1: 4 × 1,  b2: 3 × 1,  b3: 4 × 1,  b4: 2 × 1
+
+3) Voll ausmultipliziertes Forward-Ergebnis  
+   x¹ = A1 X        + b1  
+   x² = A2 x¹       + b2 = A2 A1 X + A2 b1 + b2  
+   x³ = A3 x²       + b3 = A3 A2 A1 X + A3 A2 b1 + A3 b2 + b3  
+   x⁴ = A4 x³       + b4 = A4 A3 A2 A1 X  
+                       + A4 A3 A2 b1  
+                       + A4 A3 b2  
+                       + A4 b3  
+                       + b4
+
+4) Warum man das in der Praxisnicht so macht  
+   • Vier Matrixtakte auf einmal multiplizieren kostet viel Rechenzeit  
+   • Mehrfache Multiplikation verstärkt Rundungsfehler  
+   • Sobald zwischen zwei linearen Schritten eine nicht-lineare Aktivierung
+     (etwa ReLU oder tanh) sitzt, lässt sich die gesamte Berechnung nicht mehr
+      zu einer einzigen Gesamtmatrix zusammenfassen.
+   • Am einfachsten: Schicht für Schicht laufen lassen (klassischer Forward-Pass)

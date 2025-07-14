@@ -1,0 +1,31 @@
+Exercise 7.9 – analytische Ableitung
+
+Setup
+u = A·x
+v = tanh(u)
+z = B·v
+p = softmax(z)
+Loss L = −0.5 · Σ_i y_i ln p_i        (nur ein Bild)
+
+Gesucht:  ∂L/∂B_ij   und   ∂L/∂A_ij
+
+1. Ableitung der Loss nach p
+   ∂L/∂p_i = −0.5 · y_i / p_i     (kommt direkt aus der CE-Formel)
+
+2. p → z (Softmax + CE)
+   ∂L/∂z_k = 0.5 · (p_k − y_k)    (Softmax-Jacobi einkürzen)
+
+3. z → B
+   z = B·v  ⇒  ∂z_k/∂B_kj = v_j
+   Also  ∂L/∂B_kj = 0.5 · (p_k − y_k) · v_j
+   Kurz in Matrixform:   ∇_B L = 0.5 · (p − y) · vᵀ
+
+4. v → A
+   v = tanh(u),   u = A·x
+   tanh’(u_i) = 1 − v_i²
+   ∂L/∂A_ij = 0.5 · (p − y)ᵗ · B_{·i} · (1 − v_i²) · x_j
+
+Gesamtmatrix:
+   ∇_A L = (Bᵀ · 0.5·(p − y))  EP  (1 − v²)   AP  xᵀ
+           (EP = elementweise Produkt)
+           (AP = äußeres Produkt)

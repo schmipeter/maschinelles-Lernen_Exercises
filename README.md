@@ -3,3 +3,4 @@ In diesem Respository sind alle erledigten Aufgaben zu der LVA maschinelles Lern
 
 
 Aufgaben 5.1 bis 5.5 sind gesammelt im Ordner MECH-M-DUAL-2-MLB-DATA in einem eingenen Projekt zu finden
+Aufgbabe 6 ist im Ordner MLB-DATA in einem eingenen Projekt zu finden.

@@ -1,0 +1,27 @@
+Exercise 8.1
+
+Eingangsgrößen
+N_h, N_w  – Höhe und Breite des Inputs
+K_h, K_w  – Höhe und Breite des Kerns
+P_h, P_w  – Padding oben/unten bzw. links/rechts
+S_h, S_w  – Stride in beide Richtungen
+
+1) Kein Padding, Stride 1
+H_out = N_h − K_h + 1
+W_out = N_w − K_w + 1
+
+2) Padding P, Stride 1
+H_out = N_h + 2P_h − K_h + 1
+W_out = N_w + 2P_w − K_w + 1
+
+3) Stride S, kein Padding
+H_out = floor((N_h − K_h) / S_h) + 1
+W_out = floor((N_w − K_w) / S_w) + 1
+
+4) Stride S und Padding P
+H_out = floor((N_h + 2P_h − K_h) / S_h) + 1
+W_out = floor((N_w + 2P_w − K_w) / S_w) + 1
+
+Padding für „same“ (Stride 1)
+P_h = (K_h − 1) / 2
+P_w = (K_w − 1) / 2

@@ -1,0 +1,23 @@
+1. Wie entsteht die Zahl in der Spalte „Param '#'?  
+
+Die Zahl in der Spalte «Param '#' entsteht, indem für jede Linear-Schicht
+   zuerst die Anzahl der Gewichtswerte berechnet werden (Eingangsknoten × Ausgangsknoten)
+   und anschließend die Bias-Terme hinzufügt werden (ein Bias pro Ausgangsknoten).
+   Beim ersten Layer sind das 1024 × 2 = 2048 Gewichte plus 2 Bias-Werte,
+   also 2050 Parameter.
+   Die nachfolgende Tanh-Aktivierung besitzt keine lernbaren Parameter, daher 0.
+   Im zweiten Linear-Layer kommen 2 × 2 = 4 Gewichte und 2 Bias-Werte hinzu,
+   also 6 Parameter.
+   Addiert ergibt sich exakt die in der Übersicht angegebene Gesamtzahl von
+   2056 trainierbaren Parametern.
+
+2. Warum entspricht „Params size“ rund 8.03 KB? 
+
+   Die in der Übersicht ausgewiesene «Params size» von rund 8.03 KB erklärt sich
+   aus der Datentypgröße der Parameter:
+   2056 × 4 Byte = 8224 Byte.
+   Dividiert durch 1024 ergibt das 8.03 Kilobyte.
+   Vier Byte pro Wert bedeutet, dass Torch die Gewichte als 32-Bit-Floats
+   (float32) speichert.
+   Würde man auf 16-Bit-Präzision (float16, 2 Byte) umstellen,
+   läge der Bedarf nur bei ungefähr 4 KB.
